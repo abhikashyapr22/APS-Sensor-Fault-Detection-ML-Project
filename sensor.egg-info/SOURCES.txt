@@ -4,6 +4,7 @@ sensor/__init__.py
 sensor/config.py
 sensor/exception.py
 sensor/logger.py
+sensor/predictor.py
 sensor/utils.py
 sensor.egg-info/PKG-INFO
 sensor.egg-info/SOURCES.txt
@@ -13,6 +14,8 @@ sensor.egg-info/top_level.txt
 sensor/components/__init__.py
 sensor/components/data_ingetion.py
 sensor/components/data_transformation.py
+sensor/components/data_validation.py
+sensor/components/model_evaluation.py
 sensor/components/model_pusher.py
 sensor/components/model_trainer.py
 sensor/entity/__init__.py
