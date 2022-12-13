@@ -65,7 +65,7 @@ class DataTransformation:
             transformation_pipeline = DataTransformation.get_data_transformer_object()
             transformation_pipeline.fit(input_feature_train_df)
 
-            # transforming imput features
+            # transforming input features
             input_feature_train_arr = transformation_pipeline.tranform(input_feature_train_df)
             input_feature_test_arr = transformation_pipeline.transform(input_feature_test_df)
 
@@ -74,8 +74,28 @@ class DataTransformation:
             input_feature_train_arr, input_feature_test_arr = smt.fit_resample(input_feature_train_arr, target_feature_train_arr)
             logging.info(f"After resampling in testing set Input: {input_feature_train_arr.shape} Target: {target_feature_train_arr.shape}")
 
-            logging.info()
+            logging.info(f"Before resampling in testing set input: {input_feature_test_arr.shape} Target: {target_feature_test_arr.shape}")
+            input_feature_test_arr, target_feature_test_arr = smt.fit_resample(input_feaure_test_arr, target_feature_test_arr)
+            logging.info(f"After resampling in testing set input: {input_feature_test_arr.shape} Target :{target_feature_test_arr.shape}")
 
+            # Target encoder
+            train_arr = np._[input_feature_train_arr, target_feature_train_arr]
+            test_arr = np.c_[input_feature_test_arr, target_feature_test_arr]
+
+            # save numpy array
+            utils.save_numpy_array_data(file_path=self.data_tranformation_config.transformed_train_path, array=train_arr)
+            utils.save_numpy_array_data(file_path=self.data_transformation_config.target_encoder_path, obj=label_encoder)
+
+
+            data_tranformation_artifact = artifact_entity.DataTransformationArtifact(
+                transform_object_path=self.data_transformation_config.transform_object_path,
+                transformed_train_path=self.data_transformation_config.transformed_train_path,
+                transformed_test_path=self.data_transformation_config.transformed_test_path,
+                target_encoder_path=self.data_transformation_config.target_encoder_path
+                )
+
+            logging.info(f"Data transformation object {data_tranformation_artifact}")
+            return data_tranformation_artifact
 
         except Exception as e:
             raise SensorException(e, sys)
