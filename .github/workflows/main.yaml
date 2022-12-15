@@ -15,15 +15,15 @@ jobs:
     name: Continuous Delivery
     runs-on: ubuntu-latest
     steps:
-      -name: Continuous Delivery
-       uses: actions/checkouts@v3
-      -name: Install Utilities
+     - name: Continuous Delivery
+       uses: actions/checkout@v3
+     - name: Install Utilities
        run: |
         sudo apt-get update
         sudo apt-get install -y jq unzip
 
 
-      -name: Configure AWS credentils
+     - name: Configure AWS credentils
        uses: aws-actions/configure-aws-credentials@v1
        with:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
@@ -31,12 +31,12 @@ jobs:
         aws-region: ${{secrets.AWS_REGION}}
 
 
-      -name: Login to Amazon ECR
+     - name: Login to Amazon ECR
        id: login_ecr
        uses: aws-actions/amazon-ecr-login@v1
 
 
-      -name: Build, tag, and push image to Amazon ECR
+     - name: Build, tag, and push image to Amazon ECR
        id: build-image
        env:
         ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
@@ -52,7 +52,7 @@ jobs:
 
 Continuous-Deployment:
   needs: built-and-push-ecr-image
-  run-on:self-hosted
+   run-on:self-hosted
   steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -68,7 +68,7 @@ Continuous-Deployment:
         sudo apt-get update
         sudo apt-get install -y jq unzip
     - name: Login to Amazon ECR
-      id:login-ecr
+       id:login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
 
