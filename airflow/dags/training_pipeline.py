@@ -1,6 +1,6 @@
 import pendulum 
 import os
-from airflow import dags
+from airflow import DAG
 from airflow.operators.python import PythonOperator
 from sensor.pipeline.training_pipeline import start_training_pipeline
 
