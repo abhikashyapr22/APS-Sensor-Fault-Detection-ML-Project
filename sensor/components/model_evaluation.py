@@ -13,7 +13,7 @@ class ModelEvaluation:
 
     def __init__(self,
         model_eval_config:config_entity.ModelEvaluationConfig,
-        data_ingestion_artifact:artifact_entity.DataIngrstionArtifact,
+        data_ingestion_artifact:artifact_entity.DataIngestionArtifact,
         data_transformation_artifact:artifact_entity.DataTransformationArtifact,
         model_trainer_artifact:artifact_entity.ModelTrainerArtifact
         ):

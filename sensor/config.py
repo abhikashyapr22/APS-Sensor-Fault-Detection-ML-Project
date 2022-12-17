@@ -14,13 +14,13 @@ class EnvironmentVariable:
     aws_access_secret_key:str = os.getenv("AWS_SECRET_ACCESS_KEY")
 
 
-env_var = EnvironmentVariable()
-mongo_client = pymongo.MongoClient(env_var.mongo_db_url)
-TARGET_COLUMN = "class"
-
 # env_var = EnvironmentVariable()
-# client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
+# mongo_client = pymongo.MongoClient(env_var.mongo_db_url)
 # TARGET_COLUMN = "class"
 
-DATABASE_NAME ="aps"
-COLLECTION_NAME = "sensor"
+env_var = EnvironmentVariable()
+mongo_client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
+TARGET_COLUMN = "class"
+
+# DATABASE_NAME ="aps"
+# COLLECTION_NAME = "sensor"

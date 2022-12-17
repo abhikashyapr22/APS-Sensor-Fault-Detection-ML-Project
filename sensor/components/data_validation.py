@@ -15,7 +15,7 @@ class DataValidation:
 
     def __init__(self, 
                 data_validation_config:config_entity.DataValidationConfig, 
-                data_ingestion_artifact:artifact_entity.DataIngrstionArtifact):
+                data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
         try:
             logging.info(f"{'>>'*20} Data Validation {'<<'*20}")
             self.data_validation_config = data_validation_config
@@ -25,7 +25,7 @@ class DataValidation:
             raise SensorException(e, sys)
 
     
-    def drop_missing_values_columns(self, df:pd.DataFrame, report_key_name:str)->Optinal[pd.DataFrame]:
+    def drop_missing_values_columns(self, df:pd.DataFrame, report_key_name:str)->Optional[pd.DataFrame]:
         """
         This function will drop column which contains missing values more than specified threshold
         df: Accepts a pandas dataframe:

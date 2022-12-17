@@ -3,7 +3,7 @@ from sensor.exception import SensorException
 from sensor.logger import logging
 from typing import Optional
 import os, sys
-from sklearn.pipeline import pipeline
+from sklearn.pipeline import Pipeline
 import pandas as pd
 import numpy as np
 from sensor import utils
@@ -18,7 +18,7 @@ from sensor.config import TARGET_COLUMN
 class DataTransformation:
 
     def __init__(self, data_transformation_config:config_entity.DataTransformationConfig,
-                data_ingestion_artifact:artifact_entity.DataIngrstionArtifact):
+                data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
         try:
             logging.info(f"{'>>'*20} Data Transformation {'<<'*20}")
             self.data_transformation_config=data_transformation_config
@@ -28,7 +28,7 @@ class DataTransformation:
 
     
     @classmethod
-    def get_data_transformer_object(cls)->Pipiline:
+    def get_data_transformer_object(cls)->Pipeline:
         try:
             simple_imputer = SimpleImputer(strategy='constant', fill_value=0)
             robust_scaler = RobustScaler()

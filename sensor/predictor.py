@@ -18,7 +18,7 @@ class ModelResolver:
         os.makedirs(self.model_registry, exist_ok=True)
 
     
-    def get_latest_dir_path(self)->Optinal[str]:
+    def get_latest_dir_path(self)->Optional[str]:
         try:
             dir_names = os.listdir(self.model_registry)
             if len(dir_names==0):

@@ -2,7 +2,7 @@ from sensor.exception import SensorException
 from sensor.logger import logging
 from sensor.predictor import ModelResolver
 from sensor.utils import load_object
-from datatime import datetime
+from datetime import datetime
 import pandas as pd
 import numpy as np
 import os, sys
