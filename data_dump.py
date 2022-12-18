@@ -5,7 +5,7 @@ import json
 # from sensor.config import mongo_client
 
 # Provide the mongodb localhost url to connect python to mongodb.
-client = pymongo.MongoClient("mongodb+srv://root:root@cluster0.rzyk2u3.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://root:abhi123@cluster0.rzyk2u3.mongodb.net/?retryWrites=true&w=majority")
 
 DATABASE_NAME ="aps"
 COLLECTION_NAME = "sensor"
