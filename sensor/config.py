@@ -19,7 +19,7 @@ class EnvironmentVariable:
 # TARGET_COLUMN = "class"
 
 env_var = EnvironmentVariable()
-mongo_client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
+mongo_client = pymongo.MongoClient("mongodb+srv://root:abhi123@cluster0.rzyk2u3.mongodb.net/?retryWrites=true&w=majority")
 TARGET_COLUMN = "class"
 
 # DATABASE_NAME ="aps"
