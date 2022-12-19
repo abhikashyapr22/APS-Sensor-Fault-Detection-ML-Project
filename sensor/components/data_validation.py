@@ -44,7 +44,7 @@ class DataValidation:
 
             logging.info(f"Columns to drop {list(drop_column_names)}")
             self.validdation_error[report_key_name]=list(drop_column_names)
-            df.drop(list(drop_column_names))
+            df.drop(list(drop_column_names), axis=1)
 
             # return None if no columns left
             if len(df.columns)==0:
@@ -83,7 +83,7 @@ class DataValidation:
                 base_data, current_data = base_df[base_column], current_df[base_column]
 
                 # Null hypothesis is that both the column data from same distribution
-                logging.info(f"Hypothesis {base_column}: {base_data.type}, {current_colun}: {current_data.type}")
+                logging.info(f"Hypothesis {base_column}: {base_data.dtype}, {current_data.dtype}")
                 same_distribution = ks_2samp(base_data, current_data)
 
                 if same_distribution.pvalue>0.5:

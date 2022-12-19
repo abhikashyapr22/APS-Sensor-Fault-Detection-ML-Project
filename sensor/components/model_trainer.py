@@ -39,7 +39,7 @@ class ModelTrainer:
     def initiate_model_trainer(self, )->artifact_entity.ModelTrainerArtifact:
         try:
             logging.info("loading train and test array")
-            train_arr = utils.load_numpy_array_data(file_path=slef.data_transformation_artifact.transformed_train_path)
+            train_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_train_path)
             test_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_test_path)
             logging.info("Splitting both input and target feature from both train and test array")
             x_train, y_train = train_arr[:,:-1], train_arr[:,-1]
@@ -50,19 +50,19 @@ class ModelTrainer:
 
             logging.info("Calculating f1 train score")
             yhat_train = model.predict(x_train)
-            f1_score_train_score = f1_score(y_true=y_train, y_pred=yhat_train)
+            f1_train_score = f1_score(y_true=y_train, y_pred=yhat_train)
 
             logging.info("Calculating f1 test score")
             yhat_test = model.predict(x_test)
-            f1_score_test_score = f1_score(y_true=y_test, y_pred=yhat_test)
+            f1_test_score = f1_score(y_true=y_test, y_pred=yhat_test)
 
-            logging.info(f"train score: {f1_score_train_score} and test score {f1_score_test_score}")
+            logging.info(f"train score: {f1_train_score} and test score {f1_test_score}")
 
             # check for overfitting, underfitting or expected score
             logging.info("Checking if model if underfitting or not")
-            if f1_score_test_score < self.model_trainer_config.expected_score:
+            if f1_test_score < self.model_trainer_config.expected_score:
                 raise Exception(f"Model is not good as it is not able to give \
-                    expected accuracy {self.model_trainer_config.expected_score}:model actual score :{f1_score_test_score}")
+                    expected accuracy {self.model_trainer_config.expected_score}:model actual score :{f1_test_score}")
             
             logging.info("Checking if our model is overfitting or not")
             diff = abs(f1_train_score-f1_test_score)
@@ -77,7 +77,7 @@ class ModelTrainer:
             # Prepare artifact 
             logging.info("Preparing artifact")
             model_trainer_artifact = artifact_entity.ModelTrainerArtifact(model_path=self.model_trainer_config.model_path,
-             f1_train_score=f1_score_train_score, f1_test_score=f1_score_test_score)
+             f1_train_score=f1_train_score, f1_test_score=f1_test_score)
 
             logging.info(f"Model trainer artifact: {model_trainer_artifact}")
             return model_trainer_artifact

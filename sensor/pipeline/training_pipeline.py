@@ -30,8 +30,8 @@ def start_training_pipeline():
         data_validation_artifact = data_validation.initiate_data_validation()
 
         # Data transformation
-        data_transfromation_config = config_entity.DataTransformationConfig(training_pipeline_config=training_pipeline_config)
-        data_transformation =DataTransformation(
+        data_transformation_config = config_entity.DataTransformationConfig(training_pipeline_config=training_pipeline_config)
+        data_transformation = DataTransformation(
             data_transformation_config=data_transformation_config,
             data_ingestion_artifact=data_ingestion_artifact
             )
@@ -40,15 +40,15 @@ def start_training_pipeline():
         # Model trainer 
         model_trainer_config = config_entity.ModelTrainerConfig(trainig_pipeline_config=training_pipeline_config)
         model_trainer = ModelTrainer(
-            model_trainer_config=model_trainer_cinfig,
+            model_trainer_config=model_trainer_config,
             data_transformation_artifact=data_transformation_artifact
             )
         model_trainer_artifact = model_trainer.initiate_model_trainer()
 
         # Model evaluation
-        model_eval_config = config_entity.ModelEvaluationConfig(training_pipeline_config=training_ppipeline_config)
+        model_eval_config = config_entity.ModelEvaluationConfig(training_pipeline_config=training_pipeline_config)
         model_eval = ModelEvaluation(
-            model_eval_config=Model_eval_config, 
+            model_eval_config=model_eval_config, 
             data_ingestion_artifact=data_ingestion_artifact, 
             data_transformation_artifact=data_transformation_artifact, 
             model_trainer_artifact=model_trainer_artifact
@@ -56,7 +56,7 @@ def start_training_pipeline():
         model_eval_artifact = model_eval.initiate_model_evaluation()
 
         # Model pusher
-        model_pusher_config = config_entity.ModelPusherConfig(trainig_pipeline_config)
+        model_pusher_config = config_entity.ModelPusherConfig(training_pipeline_config)
         model_pusher = ModelPusher(
             model_pusher_config=model_pusher_config, 
             data_transformation_artifact=data_transformation_artifact, 

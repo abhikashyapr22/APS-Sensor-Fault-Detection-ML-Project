@@ -5,7 +5,7 @@ from sensor.logger import logging
 from sensor.exception import SensorException
 import os, sys
 import pandas as pd 
-import numpy as numpy
+import numpy as np
 from sklearn.model_selection import train_test_split
 
 class DataIngestion:
@@ -28,7 +28,7 @@ class DataIngestion:
             logging.info("Save data in feature store")
 
             # replace na with Nam
-            df.replace(to_replace="na", value=np.Nan, inplace=True)
+            df.replace(to_replace="na", value=np.NAN, inplace=True)
 
             logging.info("Create feature store folder if not available")
             feature_store_dir = os.path.dirname(self.data_ingestion_config.feature_store_file_path)

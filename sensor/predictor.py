@@ -21,7 +21,7 @@ class ModelResolver:
     def get_latest_dir_path(self)->Optional[str]:
         try:
             dir_names = os.listdir(self.model_registry)
-            if len(dir_names==0):
+            if len(dir_names)==0:
                 return None
 
             dir_names = list(map(int, dir_names))
@@ -31,7 +31,7 @@ class ModelResolver:
             raise e
 
 
-    def get_latest_model_path(self):
+    def get_latest_model_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_dir_path()
             if latest_dir is None:
@@ -41,7 +41,7 @@ class ModelResolver:
             raise e
 
 
-    def get_latest_transformer_path(self):
+    def get_latest_transformer_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_dir_path()
             if latest_dir is None:
@@ -51,7 +51,7 @@ class ModelResolver:
             raise e
 
 
-    def get_latest_target_encoder_path(self):
+    def get_latest_target_encoder_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_dir_path()
             if latest_dir is None:
@@ -61,7 +61,7 @@ class ModelResolver:
             raise e
 
     
-    def get_latest_save_dir_path(self):
+    def get_latest_save_dir_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_dir_path()
             if latest_dir is None:
@@ -72,7 +72,7 @@ class ModelResolver:
             raise e
 
         
-    def get_latest_save_model_path(self):
+    def get_latest_save_model_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_dir_path()
             return os.path.join(latest_dir, self.model_dir_name, MODEL_FILE_NAME)
@@ -80,15 +80,15 @@ class ModelResolver:
             raise e
 
 
-    def get_latest_save_transformer_path(self):
+    def get_latest_save_transformer_path(self)->Optional[str]:
         try:
-            latest_dir = self.get_latest_dir_path()
+            latest_dir = self.get_latest_save_dir_path()
             return os.path.join(latest_dir, self.transformer_dir_name, TRANSFORMER_OBJECT_FILE_NAME)
         except Exception as e:
             raise e
 
 
-    def get_latest_save_target_encoder_path(self):
+    def get_latest_save_target_encoder_path(self)->Optional[str]:
         try:
             latest_dir = self.get_latest_save_dir_path()
             return os.path.join(latest_dir, self.target_encoder_dir_name, TARGET_ENCODER_OBJECT_FILE_NAME)
