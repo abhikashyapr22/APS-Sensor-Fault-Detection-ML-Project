@@ -1,11 +1,11 @@
-from sensor.entity.config_entity import TRANSFORMER_OBJECT_FILE_NAME, TARGET_ENCODER_OBJECT_FILE_NAME
+from sensor.entity.config_entity import TRANSFORMER_OBJECT_FILE_NAME, TARGET_ENCODER_OBJECT_FILE_NAME, MODEL_FILE_NAME
 from typing import Optional
 import os
 
 
 class ModelResolver:
 
-    def __init__(self, model_registry="saved_models",
+    def __init__(self, model_registry:str="saved_models",
                 transformer_dir_name="transformer",
                 target_encoder_dir_name="target_encoder",
                 model_dir_name="model"):
@@ -74,7 +74,7 @@ class ModelResolver:
         
     def get_latest_save_model_path(self)->Optional[str]:
         try:
-            latest_dir = self.get_latest_dir_path()
+            latest_dir = self.get_latest_save_dir_path()
             return os.path.join(latest_dir, self.model_dir_name, MODEL_FILE_NAME)
         except Exception as e:
             raise e

@@ -2,7 +2,7 @@ from sensor.predictor import ModelResolver
 from sensor.entity.config_entity import ModelPusherConfig
 from sensor.exception import SensorException
 from sensor.utils import load_object, save_object
-from sensor.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
+from sensor.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact, ModelPusherArtifact
 from sensor.logger import logging
 import sys
 
@@ -39,18 +39,21 @@ class ModelPusher:
             # Saved model dir
             logging.info("Saving model in saved model dir")
             transformer_path = self.model_resolver.get_latest_save_transformer_path()
-            model_path = self.model_resolver.get_latest_model_path()
+            model_path = self.model_resolver.get_latest_save_model_path()
             target_encoder_path = self.model_resolver.get_latest_save_target_encoder_path()
 
             save_object(file_path=transformer_path, obj=transfomer)
             save_object(file_path=model_path, obj=model)
             save_object(file_path=target_encoder_path, obj=target_encoder)
 
-            model_pusher_artifact = ModelPusherArtifaact(pusher_model_dir=self.model_pusher_config.model_pusher_dir,
-            saved_model_dir=self.model_pusher_config.saved_model_dir)
+            model_pusher_artifact = ModelPusherArtifact(
+                pusher_model_dir=self.model_pusher_config.model_pusher_dir,
+                saved_model_dir=self.model_pusher_config.saved_model_dir
+                )
 
             logging.info(f"Model pusher artifact: {model_pusher_artifact}")
             return model_pusher_artifact
+            
         except Exception as e:
             raise SensorException(e, sys)
 
