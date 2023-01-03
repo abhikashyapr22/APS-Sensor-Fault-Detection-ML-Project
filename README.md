@@ -12,7 +12,7 @@ In this project, the system in focus is the Air Pressure system (APS) which gene
 
 The problem is to reduce the cost due to unnecessary repairs. So it is required to minimize the false predictions.
 
-### Step 1 - Install the requirements
+<!-- ### Step 1 - Install the requirements
 
 ```bash
 pip install -r requirements.txt
@@ -109,5 +109,5 @@ ECR_REPOSITORY_NAME=
 BUCKET_NAME=
 MONGO_DB_URL=
 
-```
+``` -->
 
