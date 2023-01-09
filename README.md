@@ -27,7 +27,7 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
 4. Git Actions
 5. Terraform
 
-## How to run?
+<!-- ## How to run?
 Before we run the project, make sure that you are having MongoDB in your local system, with Compass since we are using MongoDB for data storage. You also need AWS account to access the service like S3, ECR and EC2 instances.
 
 ### Step 1: Clone the repository
@@ -78,3 +78,4 @@ http://localhost:8080/train
 http://localhost:8080/predict
 
 ```
+ -->
