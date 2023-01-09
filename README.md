@@ -13,11 +13,10 @@ In this project, the system in focus is the Air Pressure system (APS) which gene
 The problem is to reduce the cost due to unnecessary repairs. So it is required to minimize the false predictions.
 
 ## Tech Stack Used
-1. Python 
-2. FastAPI 
-3. Machine learning algorithms
-4. Docker
-5. MongoDB
+1. Python  
+2. Machine learning algorithms
+3. Docker
+4. MongoDB
 
 ## Infrastructure Required.
 
@@ -25,7 +24,6 @@ The problem is to reduce the cost due to unnecessary repairs. So it is required 
 2. AWS EC2
 3. AWS ECR
 4. Git Actions
-5. Terraform
 
 <!-- ## How to run?
 Before we run the project, make sure that you are having MongoDB in your local system, with Compass since we are using MongoDB for data storage. You also need AWS account to access the service like S3, ECR and EC2 instances.
